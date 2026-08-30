@@ -213,6 +213,10 @@ body {
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.right span {
+  font-family: cursive, sans-serif;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
