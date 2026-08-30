@@ -1,0 +1,233 @@
+:root {
+  --primary-color: #6a5acd;
+  --secondary-color: #8a7fea;
+  --background-light: #f4f5f7;
+  --text-primary: #2c3e50;
+  --text-secondary: #5a6674;
+  --border-color: #e0e4e8;
+  --shadow-subtle: rgba(0, 0, 0, 0.08);
+  --shadow-medium: rgba(0, 0, 0, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+body {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  background: linear-gradient(135deg, var(--background-light), #dfe4ea);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.todo-container {
+  background: white;
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow:
+    0 15px 35px var(--shadow-subtle),
+    0 5px 15px var(--shadow-medium);
+  width: 500px;
+  max-height: 95%;
+  border: 1px solid var(--border-color);
+}
+
+.todo-header {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--primary-color);
+  letter-spacing: 0.5px;
+  background: linear-gradient(
+    45deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.todo-input {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.todo-input input {
+  flex: 1;
+  padding: 15px 18px;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  font-size: 16px;
+  color: var(--text-primary);
+  background-color: var(--background-light);
+  box-shadow: inset 0 2px 4px var(--shadow-subtle);
+  outline: none;
+}
+
+.todo-input input:focus {
+  border-color: var(--primary-color);
+  box-shadow:
+    0 0 0 3px rgba(106, 90, 205, 0.1),
+    inset 0 2px 4px var(--shadow-subtle);
+}
+
+.todo-input button {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(106, 90, 205, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.todo-input button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(106, 90, 205, 0.4);
+}
+
+.todo-input button:active {
+  transform: translateY(1px);
+  box-shadow: 0 5px 15px rgba(106, 90, 205, 0.2);
+}
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  border-radius: 15px;
+  background-color: var(--background-light);
+  box-shadow:
+    0 4px 6px var(--shadow-subtle),
+    0 1px 3px var(--shadow-subtle);
+  position: relative;
+  overflow: hidden;
+}
+
+.task::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.task:hover::before {
+  opacity: 1;
+}
+
+.task input[type="checkbox"] {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  animation: fadeIn 0.4s ease;
+}
+
+.task input[type="checkbox"]:checked {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  border-color: transparent;
+}
+
+.task input[type="checkbox"]:checked::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12px;
+}
+
+.task label {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.task input[type="checkbox"]:checked + label {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .todo-container {
+    padding: 25px;
+    border-radius: 15px;
+  }
+
+  .todo-header {
+    font-size: 24px;
+  }
+
+  .todo-input {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .todo-input input,
+  .todo-input button {
+    width: 100%;
+  }
+}
