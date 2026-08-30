@@ -227,7 +227,7 @@ body {
 
 @media (max-width: 768px) {
   .todo-container {
-    width: 500px;
+    width: 400px;
     padding: 25px;
     border-radius: 15px;
   }
